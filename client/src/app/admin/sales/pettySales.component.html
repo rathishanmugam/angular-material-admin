@@ -1,0 +1,246 @@
+<h1> Petty Sales Entry Form</h1>
+<hr/>
+<div  fxLayoutAlign="space-between stretch" fxLayout="row wrap" fxLayout.xs="column">
+
+  <mat-card>
+
+  <div class="col-md-12">
+</div>
+<div class="col-md-6">
+  <!--  <form [formGroup] ="newEventForm" (ngSubmit)="saveEvent(newEventForm.value)" autocomplete="off">-->
+  <form [formGroup]="newEventForm" autocomplete="off" novalidate>
+    <div class="form-group" [ngClass]="{'error': billNo.invalid && billNo.dirty }">
+      <label for="billNo">Bill No:</label>
+      <input formControlName="billNo" id="billNo" type="text" class="form-control" [readonly]="true"
+             placeholder="bill no..."/>
+      <div *ngIf="billNo.invalid && (billNo.dirty || billNo.touched)"
+           class="alert alert-danger">
+        <div *ngIf="billNo.errors.required">
+          Bill No is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'error': salesDate.invalid && salesDate.dirty }">
+      <label for="salesDate">Sales date:</label>
+      <input formControlName="salesDate" id="salesDate" type="date" [readonly]="true" class="form-control"
+             placeholder="date..."/>
+      <div *ngIf="salesDate.invalid && (salesDate.dirty || salesDate.touched)"
+           class="alert alert-danger">
+        <div *ngIf="salesDate.errors.required">
+          salesDate is required.
+        </div>
+      </div>
+    </div>
+
+
+    <div formArrayName="products">
+      <button class="btn btn-primary"  (click)="addProduct(0)">Add
+        Product
+      </button>
+      <div *ngFor="let product of products.controls; let i=index">
+
+        <div [formGroupName]="i">
+
+          <div class="col-md-6">
+            <label class=" col-form-label" attr.for="{{'serialNo' + i}}">
+              Serial No:</label>
+
+            <select formControlName="serialNo" id="{{'serialNo' + i}}" required placeholder="serialNo"
+                    class="form-control">
+              <option value="" disabled>Choose Serial No</option>
+
+              <option *ngFor="let type of serials ">{{type}}</option>
+            </select>
+
+            <div
+              *ngIf="products.controls[i].get('serialNo').invalid && (products.controls[i].get('serialNo').dirty || products.controls[i].get('serialNo').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('serialNo').errors?.required">
+                serialNo required.
+              </label>
+            </div>
+          </div>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'modelNo' + i}}">
+            Model No:</label>
+          <div class="col-md-6">
+            <input id="{{'modelNo' + i}}" formControlName="modelNo" placeholder="modelNo" [readonly]="true"
+                   class="form-control" type="text">
+            <div
+              *ngIf="products.controls[i].get('modelNo').invalid && (products.controls[i].get('modelNo').dirty || products.controls[i].get('modelNo').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('modelNo').errors?.required">
+                modelNo required.
+              </label>
+            </div>
+          </div>
+          <br/>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'companyName' + i}}">
+            Company Name:</label>
+          <div class="col-md-6">
+            <input id="{{'companyName' + i}}" formControlName="companyName" placeholder="companyName" [readonly]="true"
+                   class="form-control" type="text">
+            <div
+              *ngIf="products.controls[i].get('companyName').invalid && (products.controls[i].get('companyName').dirty || products.controls[i].get('companyName').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('companyName').errors?.required">
+                companyName required.
+              </label>
+            </div>
+          </div>
+          <br/>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'productType' + i}}">
+            Product Type:</label>
+          <div class="col-md-6">
+            <input id="{{'productType' + i}}" formControlName="productType" placeholder="productType" [readonly]="true"
+                   class="form-control" type="text">
+            <div
+              *ngIf="products.controls[i].get('productType').invalid && (products.controls[i].get('productType').dirty || products.controls[i].get('productType').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('productType').errors?.required">
+                productType required.
+              </label>
+            </div>
+          </div>
+          <br/>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'qty' + i}}">
+            Qty:</label>
+          <div class="col-md-6">
+            <input id="{{'qty' + i}}" formControlName="qty" placeholder="qty" class="form-control" type="number">
+            <div
+              *ngIf="products.controls[i].get('qty').invalid && (products.controls[i].get('qty').dirty || products.controls[i].get('qty').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('qty').errors?.required">
+                qty required.
+              </label>
+            </div>
+            <div *ngIf="products.controls[i].get('qty').errors?.min"  class="alert alert-danger">
+              Minimum required number is 1.
+            </div>
+            <div *ngIf="products.controls[i].get('qty').errors?.max"  class="alert alert-danger">
+              Maximum required number is 10.
+            </div>
+          </div>
+          <br/>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'productRate' + i}}">
+            Product Rate:</label>
+          <div class="col-md-6">
+            <input id="{{'productRate' + i}}" formControlName="productRate" placeholder="productRate" [readonly]="true"
+                   class="form-control" type="number">
+            <div
+              *ngIf="products.controls[i].get('productRate').invalid && (products.controls[i].get('productRate').dirty || products.controls[i].get('productRate').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('productRate').errors?.required">
+                productRate required.
+              </label>
+            </div>
+          </div>
+          <br/>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'gstRate' + i}}">
+            gstRate:</label>
+          <div class="col-md-6">
+            <input id="{{'gstRate' + i}}" formControlName="gstRate" placeholder="gstRate" [readonly]="true"
+                   class="form-control" type="number">
+            <div
+              *ngIf="products.controls[i].get('gstRate').invalid && (products.controls[i].get('gstRate').dirty || products.controls[i].get('gstRate').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('gstRate').errors?.required">
+                GST Rate required.
+              </label>
+            </div>
+          </div>
+          <br/>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'sgstRate' + i}}">
+            sgstRate:</label>
+          <div class="col-md-6">
+            <input id="{{'sgstRate' + i}}" formControlName="sgstRate" placeholder="sgstRate" [readonly]="true"
+                   class="form-control" type="number">
+            <div
+              *ngIf="products.controls[i].get('sgstRate').invalid && (products.controls[i].get('sgstRate').dirty || products.controls[i].get('sgstRate').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('sgstRate').errors?.required">
+                SGST Rate required.
+              </label>
+            </div>
+          </div>
+          <br/>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'totalRate' + i}}">
+            Total Rate:</label>
+          <div class="col-md-6">
+            <input id="{{'totalRate' + i}}" formControlName="totalRate" placeholder="totalRate" class="form-control"
+                   [readonly]="true" type="number">
+            <div
+              *ngIf="products.controls[i].get('totalRate').invalid && (products.controls[i].get('totalRate').dirty || products.controls[i].get('totalRate').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('totalRate').errors?.required">
+                totalRate required.
+              </label>
+            </div>
+          </div>
+          <br/>
+
+          <div class="form-group row mb-2">
+            <div class="col-md-8">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input"
+                         id="{{'sendStock' + i}}"
+                         type="checkbox"
+                         (click)="reduceStock(i)"
+                         formControlName="sendStock">Reduce  From Stock
+                </label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="btn-group btn-group-sm">
+
+          <div class="col-md-4 offset-md-2">
+            <button class="btn btn-primary"
+                    style="font-size:smaller;margin-bottom:12px;margin-right:2px"
+                    title="Click to remove this tag"
+                    (click)="deleteProduct(i)">
+              Remove Product
+            </button>
+          </div>
+          <div class="col-md-4 offset-md-2">
+
+            <button class="btn btn-primary"
+                    style="font-size:smaller;margin-bottom:12px;margin-right:2px"
+                    title="Click to add this tag" [disabled]="products.controls[i].get('sendStock').value === false  || (products.controls[i].get('serialNo').invalid || products.controls[i].get('qty').invalid )  "
+                    (click)="addProduct(i)">Add Product
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <br/>
+    <br/>
+    <div class="btn-group btn-group-sm">
+
+    <div class="col-md-4 offset-md-1">
+
+    <button type="button" [disabled]=" !this.newEventForm.valid" (click)="save()" class="btn btn-primary">Save</button>
+    </div>
+    <div class="col-md-4 offset-md-1">
+
+    <button type="button" (click)='clear()' class="btn btn-secondary">Clear Form</button>
+    </div>
+    </div>
+  </form>
+</div>
+<br>Value: {{ newEventForm.value | json }}
+  </mat-card>
+</div>
+<!--[disabled]="!newEventForm.get('products').at(0).valid"-->

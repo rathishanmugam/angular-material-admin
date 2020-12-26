@@ -1,0 +1,29 @@
+[{
+  "name": "AVP",
+  "address": "west st,cross road,karur",
+  "email": "test@test.com",
+  "phone": "720-303-1234",
+  "createdOn" : "Wed Feb 13 2020 00:00:00 GMT+0000 (UTC)"
+},
+  {
+    "name": "Vishnu Mart",
+    "address": "west st,cross road,salem",
+    "email": "test1@test.com",
+    "phone": "720-303-1234",
+    "createdOn" : "Wed Mar 13 2020 00:00:00 GMT+0000 (UTC)"
+  }]
+
+
+{
+  "name": " Mart",
+  "street": "1st cross",
+  "city": "namakkal",
+  "state": "tamil nadu",
+  "zipCode": 123456,
+  "email": "test1@test.com",
+  "phone1": "720-303-1234",
+  "phone2": "723-303-1234",
+  "mobile1": "720-302-1234",
+  "mobile2": "720-303-1224",
+  "createdOn" : "Wed Mar 13 2020 00:00:00 GMT+0000 (UTC)"
+}

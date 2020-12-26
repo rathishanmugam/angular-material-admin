@@ -1,0 +1,58 @@
+<h1 mat-dialog-title> Account :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+  <form novalidate [formGroup]="newUserForm">
+    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+      <input matInput placeholder="accountNo" type="text" [(ngModel)]="localData.accountNo" formControlName="accountNo"
+             class="form-control" name="accountNo">
+      <mat-error *ngIf="hasError('accountNo', 'required')">accountNo is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input matInput placeholder="particulars" type="text" [(ngModel)]="localData.particulars"
+             formControlName="particulars" class="form-control" name="particulars">
+      <mat-error *ngIf="hasError('particulars', 'required')">particulars is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="action != 'Delete';">
+
+
+      <input matInput placeholder="debit" type="number" [(ngModel)]="localData.debit" formControlName="debit"
+             class="form-control" name="debit">
+      <mat-error *ngIf="hasError('debit', 'required')">debit is required</mat-error>
+
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; ">
+
+      <input matInput placeholder="credit" type="number" [(ngModel)]="localData.credit" formControlName="credit"
+             class="form-control" name="credit">
+      <mat-error *ngIf="hasError('credit', 'required')">credit is required</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field *ngIf="action != 'Delete';" class="example-full-width">
+      <input #stateInput (keyup)="0" matInput placeholder="State" aria-label="State" [matAutocomplete]="auto" class="form-control" formControlName="state">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)"  *ngFor="let state of filteredStates | async" [value]="state.name">
+          <img style="vertical-align:middle;" aria-hidden  height="25" />
+          <span>{{ state.name }}</span> |
+          <small>Population: {{state.population}}</small>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input matInput placeholder="copy" type="text" [(ngModel)]="localData.particulars"
+             formControlName="copy" class="form-control" name="copy">
+      <mat-error *ngIf="hasError('copy', 'required')">copy is required</mat-error>
+    </mat-form-field>
+
+    <ng-template #elseTemplate>
+      Sure to delete <b>{{localData.accountNo}}</b>?
+    </ng-template>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

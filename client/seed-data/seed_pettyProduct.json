@@ -1,0 +1,44 @@
+[
+  {
+    "serialNo": 11,
+    "modelNo": "sow-1",
+    "companyName": "sowbakya",
+    "productType": "grinder",
+    "qty": 1,
+    "soldOn": "Wed Feb 13 2020 00:00:00 GMT+0000 (UTC)"
+  },{
+  "serialNo": 12,
+  "modelNo": "prethi-1",
+  "companyName": "preethi",
+  "productType": "mixie",
+  "qty": 1,
+  "soldOn": "Wed Jan 13 2020 00:00:00 GMT+0000 (UTC)"
+},{
+  "serialNo": 13,
+  "modelNo": "v-2",
+  "companyName": "v-guard",
+  "productType": "stablizer",
+  "qty": 1,
+  "soldOn": "Wed Jan 24 2020 00:00:00 GMT+0000 (UTC)"
+},{
+  "serialNo": 14,
+  "modelNo": "p-1",
+  "companyName": "piegien",
+  "productType": "gas stove",
+  "qty": 1,
+  "soldOn": "Wed Mar 23 2020 00:00:00 GMT+0000 (UTC)"
+},{
+  "serialNo": 15,
+  "modelNo": "k-1",
+  "companyName": "ketan",
+  "productType": "fan",
+  "qty": 1,
+  "soldOn": "Wed Jan 13 2020 00:00:00 GMT+0000 (UTC)"
+},{
+  "serialNo": 16,
+  "modelNo": "viedo-1",
+  "companyName": "viedocon",
+  "productType": "iornbox",
+  "qty": 1,
+  "soldOn": "Wed Feb 25 2020 00:00:00 GMT+0000 (UTC)"
+}]

@@ -1,0 +1,159 @@
+<h1 mat-dialog-title> Creditor :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content id="dataMessage">
+  <form novalidate [formGroup]="newUserForm">
+
+    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+
+      <input matInput placeholder="name" type="text" [(ngModel)]="localData.name" formControlName="name"
+             class="form-control" name="name">
+      <mat-error *ngIf="hasError('name', 'required')">name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; ">
+
+      <input matInput placeholder="gstIM" type="text" [(ngModel)]="localData.gstIM" formControlName="gstIM"
+             class="form-control" name="gstIM">
+      <mat-error *ngIf="hasError('gstIM', 'required')">gstIM is required</mat-error>
+    </mat-form-field>
+
+    <div formGroupName="address">
+      <mat-form-field *ngIf="action != 'Delete'; ">
+        <div class="form-group"
+             [ngClass]="{'error': newUserForm.controls.address.get('street').invalid && newUserForm.controls.address.get('street').dirty }">
+
+          <input matInput placeholder="street" type="text" [(ngModel)]="localData.address.street"
+                 formControlName="street" class="form-control" name="street">
+
+          <div
+            *ngIf="newUserForm.controls.address.get('street').invalid && (newUserForm.controls.address.get('street').dirty || newUserForm.controls.address.get('street').touched)"
+            class="alert alert-danger">
+            <div *ngIf="newUserForm.controls.address.get('street').errors.required">
+              street is required.
+            </div>
+          </div>
+        </div>
+
+      </mat-form-field>
+      <div class="form-group"
+           [ngClass]="{'error': newUserForm.controls.address.get('city').invalid && newUserForm.controls.address.get('city').dirty }">
+        <mat-form-field *ngIf="action != 'Delete'; ">
+          <input matInput placeholder="city" type="text" [(ngModel)]="localData.address.city" formControlName="city"
+                 class="form-control" name="city">
+          <div
+            *ngIf="newUserForm.controls.address.get('city').invalid && (newUserForm.controls.address.get('city').dirty || newUserForm.controls.address.get('city').touched)"
+            class="alert alert-danger">
+            <div *ngIf="newUserForm.controls.address.get('city').errors.required">
+              city is required.
+            </div>
+          </div>
+        </mat-form-field>
+
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{'error': newUserForm.controls.address.get('state').invalid && newUserForm.controls.address.get('state').dirty }">
+        <mat-form-field *ngIf="action != 'Delete'; ">
+          <input matInput placeholder="state" type="text" [(ngModel)]="localData.address.state" formControlName="state"
+                 class="form-control" name="state">
+          <div
+            *ngIf="newUserForm.controls.address.get('state').invalid && (newUserForm.controls.address.get('state').dirty || newUserForm.controls.address.get('state').touched)"
+            class="alert alert-danger">
+            <div *ngIf="newUserForm.controls.address.get('state').errors.required">
+              state is required.
+            </div>
+          </div>
+        </mat-form-field>
+
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{'error': newUserForm.controls.address.get('zipCode').invalid && newUserForm.controls.address.get('zipCode').dirty }">
+        <mat-form-field *ngIf="action != 'Delete'; ">
+          <input matInput placeholder="zipCode" type="text" [(ngModel)]="localData.address.zipCode"
+                 formControlName="zipCode" class="form-control" name="zipCode">
+          <div
+            *ngIf="newUserForm.controls.address.get('zipCode').invalid && (newUserForm.controls.address.get('zipCode').dirty || newUserForm.controls.address.get('zipCode').touched)"
+            class="alert alert-danger">
+            <div *ngIf="newUserForm.controls.address.get('zipCode').errors.required">
+              zipCode is required.
+            </div>
+          </div>
+        </mat-form-field>
+
+      </div>
+
+    </div>
+
+
+    <!--      <mat-form-field *ngIf="action != 'Delete'; ">-->
+
+    <!--      <input matInput placeholder="street" type="text" [(ngModel)]="localData.address.street" formControlName="street"   class="form-control" name="street">-->
+    <!--      <mat-error *ngIf="hasError('street', 'required')">street is required</mat-error>-->
+
+    <!--    </mat-form-field>-->
+    <!--    <mat-form-field *ngIf="action != 'Delete'; ">-->
+
+    <!--      <input matInput placeholder="city" type="text" [(ngModel)]="localData.address.city" formControlName="city"   class="form-control" name="city">-->
+    <!--      <mat-error *ngIf="hasError('city', 'required')">city is required</mat-error>-->
+
+    <!--    </mat-form-field>-->
+    <!--    <mat-form-field *ngIf="action != 'Delete'; ">-->
+
+    <!--      <input matInput placeholder="state" type="text" [(ngModel)]="localData.address.state" formControlName="state"   class="form-control" name="state">-->
+    <!--      <mat-error *ngIf="hasError('state', 'required')">state is required</mat-error>-->
+
+    <!--    </mat-form-field>-->
+    <!--    <mat-form-field *ngIf="action != 'Delete'; ">-->
+    <!--      <input matInput placeholder="zipCode" type="number" [(ngModel)]="localData.address.zipCode" formControlName="zipCode"   class="form-control" name="zipCode">-->
+    <!--      <mat-error *ngIf="hasError('zipCode', 'required')">zipCode is required</mat-error>-->
+
+    <!--    </mat-form-field>-->
+
+    <mat-form-field *ngIf="action != 'Delete'; ">
+
+      <input matInput placeholder="email" type="text" [(ngModel)]="localData.email" formControlName="email"
+             class="form-control" name="email">
+      <mat-error *ngIf="hasError('email', 'required')">email is required</mat-error>
+      <mat-error *ngIf="hasError('email', 'email')">Not a Valid email</mat-error>
+
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input matInput placeholder="phone1" type="text" [(ngModel)]="localData.phone1" formControlName="phone1"
+             class="form-control" name="phone1">
+      <mat-error *ngIf="hasError('phone1', 'required')">phone1 is required</mat-error>
+      <mat-error *ngIf="hasError('phone1','pattern')"> Format must be (xxx) xxx-xxxx</mat-error>
+
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; ">
+
+      <input matInput placeholder="phone2" type="text" [(ngModel)]="localData.phone2" formControlName="phone2"
+             class="form-control" name="phone2">
+      <mat-error *ngIf="hasError('phone2', 'required')">phone2 is required</mat-error>
+      <mat-error *ngIf="hasError('phone2','pattern')"> Format must be (xxx) xxx-xxxx</mat-error>
+
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; ">
+
+      <input matInput placeholder="mobile1" type="text" [(ngModel)]="localData.mobile1" formControlName="mobile1"
+             class="form-control" name="mobile1">
+      <mat-error *ngIf="hasError('mobile1', 'required')">mobile1 is required</mat-error>
+      <mat-error *ngIf="hasError('mobile1','pattern')"> Format must be (xxx) xxx-xxxx</mat-error>
+
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; ">
+
+      <input matInput placeholder="mobile2" type="text" [(ngModel)]="localData.mobile2" formControlName="mobile2"
+             class="form-control" name="mobile2">
+      <mat-error *ngIf="hasError('mobile2', 'required')">mobile2 is required</mat-error>
+      <mat-error *ngIf="hasError('mobile2','pattern')"> Format must be (xxx) xxx-xxxx</mat-error>
+
+    </mat-form-field>
+    <ng-template #elseTemplate>
+      Sure to delete <b>{{localData.name}}</b>?
+    </ng-template>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button [disabled]="action != 'Delete' && newUserForm.invalid  " (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" id="doIt"  mat-flat-button color="warn">Cancel</button>
+</div>

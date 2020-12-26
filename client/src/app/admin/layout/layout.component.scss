@@ -1,0 +1,25 @@
+@import '~src/scss/variables';
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  .sidenav-container {
+    flex: 1;
+    background: $main-background-color;
+    .sidenav {
+      padding: 12px;
+      width: 250px;
+      background: $white;
+    }
+    .main-container {
+      //background: linear-gradient(150deg,#D5E3F1 15%,#FFFBD9 70%,#FFDFCB 94%);
+      background: $white;
+
+      padding: 16px;
+    }
+  }
+}

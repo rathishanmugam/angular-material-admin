@@ -1,0 +1,86 @@
+<mat-nav-list>
+  <a mat-list-item [routerLinkActive]="'active'"  [routerLink]="['/dashboard']">
+    <mat-icon class="sidenav-icon">home</mat-icon>Dashboard
+  </a>
+  <a mat-list-item [routerLinkActive]="'active'"  [routerLink]="['/charts']">
+    <mat-icon class="sidenav-icon">lens</mat-icon>Charts
+  </a>
+  <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/tables']">
+    <mat-icon class="sidenav-icon">camera</mat-icon>Tables
+  </a>
+  <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/forms']">
+    <mat-icon class="sidenav-icon">grade</mat-icon>Graphs
+  </a>
+
+
+<!--  <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/mat-grid']">-->
+<!--    <mat-icon class="sidenav-icon">grid_on</mat-icon>Flex Grid-->
+<!--  </a>-->
+<!--  <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/mat-components']">-->
+<!--    <mat-icon class="sidenav-icon">code</mat-icon>Material Components-->
+<!--  </a>-->
+<!--  <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/animations']">-->
+<!--    <mat-icon class="sidenav-icon">perm_media</mat-icon>Animations-->
+<!--  </a>-->
+<!--  <mat-expansion-panel [class.mat-elevation-z0]="true" dense>-->
+<!--    <mat-expansion-panel-header style="font-size: 16px">-->
+<!--      <mat-icon class="sidenav-icon">info</mat-icon>-->
+<!--      Maintainance-->
+<!--    </mat-expansion-panel-header>-->
+<!--    <mat-nav-list >-->
+
+
+
+      <mat-expansion-panel  [class.mat-elevation-z0]="true" dense>
+        <mat-expansion-panel-header style="font-size: 16px">
+          <mat-icon  class="sidenav-icon">perm_media</mat-icon>
+          Forms
+        </mat-expansion-panel-header>
+<!--        <mat-nav-list >-->
+        <a mat-list-item  [routerLinkActive]="'active'" [routerLink]="['/account']"><mat-icon>lens</mat-icon>Account Form</a>
+
+        <a mat-list-item [routerLinkActive]="'active'"  [routerLink]="['/customer']"><mat-icon>lens</mat-icon>Customer Form</a>
+          <a mat-list-item [routerLinkActive]="'active'"  [routerLink]="['/creditor']"><mat-icon>lens</mat-icon>Creditor Form </a>
+          <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/product']"><mat-icon>lens</mat-icon>Product Form </a>
+        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/sales']"><mat-icon>lens</mat-icon>Sales Form</a>
+        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/purchase']"><mat-icon>lens</mat-icon>Purchase Form </a>
+        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/suspense']"><mat-icon>lens</mat-icon>Suspense Form</a>
+<!--        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/pettySales']"><mat-icon>add_circle_outline</mat-icon>petty Sales Form</a>-->
+
+<!--        </mat-nav-list>-->
+      </mat-expansion-panel>
+
+<!--      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/sales']"><mat-icon>add_circle_outline</mat-icon>Sales Form</a>-->
+<!--      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/purchase']"><mat-icon>add_circle_outline</mat-icon>Purchase Form </a>-->
+<!--      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/suspense']"><mat-icon>add_circle_outline</mat-icon>Suspense Form</a>-->
+
+<!--    </mat-nav-list>-->
+<!--  </mat-expansion-panel>-->
+
+
+  <mat-expansion-panel  *ngIf="adminService.LoggedIn" [class.mat-elevation-z0]="true" dense>
+    <mat-expansion-panel-header style="font-size: 16px">
+      <mat-icon class="sidenav-icon">perm_media</mat-icon>
+      Reports
+    </mat-expansion-panel-header>
+    <mat-nav-list >
+<!--      <mat-expansion-panel [class.mat-elevation-z0]="true" dense>-->
+<!--        <mat-expansion-panel-header style="font-size: 16px">-->
+<!--          <mat-icon class="sidenav-icon">stars</mat-icon>-->
+<!--          Forms-->
+<!--        </mat-expansion-panel-header>-->
+<!--        <mat-nav-list >-->
+<!--          <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/customer']"><mat-icon>add_circle</mat-icon>Customer Form</a>-->
+<!--          <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/creditor']"><mat-icon>add_circle</mat-icon>Creditor Form </a>-->
+<!--          <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/product']"><mat-icon>add_circle</mat-icon>Product Form </a>-->
+
+<!--        </mat-nav-list>-->
+<!--      </mat-expansion-panel>-->
+
+      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/salesReport']"><mat-icon>lens</mat-icon>Sales Report</a>
+      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/purchaseReport']"><mat-icon>lens</mat-icon>Purchase Report </a>
+      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/pettySaleReport']"><mat-icon>lens</mat-icon>Petty Sale Report </a>
+
+    </mat-nav-list>
+  </mat-expansion-panel>
+</mat-nav-list>

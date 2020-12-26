@@ -1,0 +1,57 @@
+<!--<mat-tab-group [selectedIndex]="activeTab" #tabGroup (selectedTabChange)="tabChanged($event)" dynamicHeight>-->
+<!--  <mat-tab role="button" title="Sales Entry Tab" label=" Sales Entry Tab">-->
+
+<!--    <app-sales ></app-sales>-->
+<!--  </mat-tab>-->
+<!--  <mat-tab role="button" title="Petty Sales Entry Tab"label="Petty Sales Entry Tab">-->
+<!--    <app-petty-sales></app-petty-sales>-->
+
+<!--  </mat-tab>-->
+<!--  <mat-tab role="button" title="Sales Report Tab" label=" Sales Report Tab">-->
+<!--    <app-salesreport-tab></app-salesreport-tab>-->
+
+<!--  </mat-tab>-->
+
+<!--  <mat-tab role="button" title="Sales Report Tab" label="Petty Sales Report Tab">-->
+<!--    <app-pettysalereport-main></app-pettysalereport-main>-->
+
+<!--  </mat-tab>-->
+<!--  <mat-tab role="button" title="Sales Report Chart Tab" label=" Sales Report Chart Tab">-->
+<!--    <app-chart></app-chart>-->
+
+<!--  </mat-tab>-->
+<!--  <mat-tab role="button" title="Petty Sales Report Chart Tab"label=" Petty Sales Report Chart Tab">-->
+<!--    <app-petty-sales></app-petty-sales>-->
+
+<!--  </mat-tab>-->
+<!--</mat-tab-group>-->
+
+<!--<mat-toolbar color="primary">-->
+<!--  <span>Angular Material App With Tab and Routing </span>-->
+<!--  &lt;!&ndash; This fills the remaining space of the current row &ndash;&gt;-->
+<!--  <span class="example-fill-remaining-space"></span>-->
+<!--</mat-toolbar>-->
+
+<!--<nav mat-tab-nav-bar>-->
+<!--  <a mat-tab-link-->
+<!--     *ngFor="let link of navLinks"-->
+<!--     [routerLink]="link.link"-->
+<!--     routerLinkActive #rla="routerLinkActive"-->
+<!--     [active]="rla.isActive">-->
+<!--    {{link.label}}-->
+<!--  </a>-->
+
+<!--</nav>-->
+<!--<mat-card>-->
+<!--  <router-outlet></router-outlet>-->
+
+<!--</mat-card>-->
+
+
+<section class="bg-white mat-elevation-z10" style="min-height: 80vh;">
+  <mat-tab-group routerTabs>
+    <mat-tab *ngFor="let link of navLinks" [routerLink]="link.path" [label]="link.label">
+    </mat-tab>
+  </mat-tab-group>
+  <router-outlet style="padding: 12px;"></router-outlet>
+</section>

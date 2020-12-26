@@ -1,0 +1,100 @@
+<h1>Sales Billing Report</h1>
+<hr/>
+<mat-card>
+<div><strong> Invoice:</strong>{{salesService.billNo}} </div>
+<div><strong>{{date | date:'shortDate'}}</strong></div>
+<div><strong> Andavar TV Center,</strong></div>
+<div><strong> Opt To Municipal Building,Namakkal</strong></div>
+<div><strong> Namakkal</strong></div>
+</mat-card>
+<mat-card *ngFor="let cus of customer" >
+    <mat-card-title>
+<h4 class="pad-left">To</h4>
+    </mat-card-title>
+    <!--      <div><strong>Event Id: </strong>{{event?.eventId}}</div>-->
+  <mat-card-content class="example-card">
+
+  <div class="pad-left"><strong> </strong>{{cus?.customerName}}</div>
+
+    <div class="pad-left"><strong></strong>{{cus?.address}}</div>
+    <div><strong> </strong>{{cus?.phoneNo}}</div>
+    <div><strong> </strong>{{cus?.email}}</div>
+  </mat-card-content>
+  <br>
+  <div *ngIf="customer" fxLayoutAlign="space-between stretch" fxLayout="row wrap" fxLayout.xs="column">
+    <div class="example-container mat-elevation-z8">
+      <table>
+        <tr>
+        <th>Model No</th>
+        <th>Company Name</th>
+        <th>Product Type</th>
+        <th>Qty</th>
+        <th>GST Rate</th>
+        <th>SGST Rate</th>
+        <th>Total Rate</th>
+        </tr>
+        <tr *ngFor="let tall of cus.products">
+          <td>{{tall.modelNo}}</td>
+          <td> {{tall.companyName}}</td>
+          <td>{{tall.productType}}</td>
+          <td>{{tall.qty}}</td>
+          <td>{{tall.gstRate}}</td>
+          <td>{{tall.sgstRate}}</td>
+          <td>{{tall.totalRate}}</td>
+        </tr>
+        <tr>
+          <td colspan="5"></td>
+          <td colspan="0">Total Cost : </td>
+          <td colspan="0">{{cus.totalNetAmount}} </td>
+
+        </tr>
+      </table>
+
+<!--  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">-->
+<!--    &lt;!&ndash; Item Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="modelNo">-->
+<!--      <th mat-header-cell *matHeaderCellDef> ModelNo   </th>-->
+<!--      <td mat-cell *matCellDef="let transaction"> {{transaction.modelNo}} </td>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash; Cost Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="companyName">-->
+<!--      <th mat-header-cell *matHeaderCellDef> CompanyName   </th>-->
+<!--      <td mat-cell *matCellDef="let transaction"> {{transaction.companyName }} </td>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash; Cost Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="productType">-->
+<!--      <th mat-header-cell *matHeaderCellDef> ProductType    </th>-->
+<!--      <td mat-cell *matCellDef="let transaction"> {{transaction.productType }} </td>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash; Cost Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="qty">-->
+<!--      <th mat-header-cell *matHeaderCellDef> qty    </th>-->
+<!--      <td mat-cell *matCellDef="let transaction"> {{transaction.qty }} </td>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash; Cost Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="gstRate">-->
+<!--      <th mat-header-cell *matHeaderCellDef> gstRate    </th>-->
+<!--      <td mat-cell *matCellDef="let transaction"> {{transaction.gstRate }} </td>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash; Cost Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="sgstRate">-->
+<!--      <th mat-header-cell *matHeaderCellDef> sgstRate    </th>-->
+<!--      <td mat-cell *matCellDef="let transaction"> {{transaction.sgstRate }} </td>-->
+<!--    </ng-container>-->
+<!--    &lt;!&ndash; Cost Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="totalRate">-->
+<!--      <th mat-header-cell *matHeaderCellDef> totalRate    </th>-->
+<!--      <td mat-cell *matCellDef="let transaction"> {{transaction.totalRate }} </td>-->
+<!--    </ng-container>-->
+<!--    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+<!--    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+<!--  </table>-->
+    </div>
+  </div>
+  <div><h5>Sold Goods Not Taken Back</h5></div>
+</mat-card>

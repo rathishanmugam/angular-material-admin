@@ -1,0 +1,622 @@
+<h1>Sales Entry Form</h1>
+<hr/>
+<div  fxLayoutAlign="space-between stretch" fxLayout="row wrap" fxLayout.xs="column">
+
+  <mat-card>
+
+<div class="col-md-12">
+</div>
+<div class="col-md-6">
+  <!--  <form [formGroup] ="newEventForm" (ngSubmit)="saveEvent(newEventForm.value)" autocomplete="off">-->
+  <form [formGroup]="newEventForm" autocomplete="off" novalidate>
+    <div class="form-group" [ngClass]="{'error': billNo.invalid && billNo.dirty }">
+      <label for="billNo">Bill No:</label>
+      <input formControlName="billNo" id="billNo" type="text" class="form-control" [readonly]="true"
+             placeholder="bill no..."/>
+      <div *ngIf="billNo.invalid && (billNo.dirty || billNo.touched)"
+           class="alert alert-danger">
+        <div *ngIf="billNo.errors.required">
+          Bill No is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'error': salesDate.invalid && salesDate.dirty }">
+      <label for="salesDate">Sales date:</label>
+      <input formControlName="salesDate" id="salesDate" type="date" [readonly]="true" class="form-control"
+             placeholder="date..."/>
+      <div *ngIf="salesDate.invalid && (salesDate.dirty || salesDate.touched)"
+           class="alert alert-danger">
+        <div *ngIf="salesDate.errors.required">
+          salesDate is required.
+        </div>
+      </div>
+    </div>
+    <mat-form-field class="example-full-width">
+      <input #stateInput (keyup)="0" matInput placeholder="customerName" aria-label="customerName" [matAutocomplete]="auto" class="form-control" formControlName="customerName">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)"  *ngFor="let customer of filteredStates | async" [value]="customer.name">
+          <span>{{ customer.name }}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button mat-button (click)="openDialog('Add',initial())" mat-flat-button color="primary">Add Customer</button>
+
+<!--    <div class="form-group" [ngClass]="{'error': customerName.invalid && customerName.dirty }">-->
+<!--      <label for="customerName">customer Name:</label>-->
+<!--      <select formControlName="customerName" id="customerName" required class="form-control">-->
+<!--        <option value="" disabled>Choose Customer</option>-->
+<!--        <option *ngFor="let type of names ">{{type}}</option>-->
+<!--      </select>-->
+<!--    </div>-->
+
+    <div class="form-group" [ngClass]="{'error': address.invalid && address.dirty }">
+      <label for="address">Address:</label>
+      <input formControlName="address" id="address" type="text" [readonly]="true" class="form-control"
+             placeholder="address..."/>
+      <div *ngIf="address.invalid && (address.dirty || address.touched)"
+           class="alert alert-danger">
+        <div *ngIf="address.errors.required">
+          address is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'error': email.invalid && email.dirty }">
+      <label for="email">Email:</label>
+      <input formControlName="email" id="email" type="text" [readonly]="true" class="form-control"
+             placeholder="email..."/>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+           class="alert alert-danger">
+        <div *ngIf="email.errors.required">
+          email is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'error': phoneNo.invalid && phoneNo.dirty }">
+      <label for="phoneNo">Phone No:</label>
+      <input formControlName="phoneNo" id="phoneNo" type="text" [readonly]="true" class="form-control"
+             placeholder="phoneNo..."/>
+      <div *ngIf="phoneNo.invalid && (phoneNo.dirty || phoneNo.touched)"
+           class="alert alert-danger">
+        <div *ngIf="phoneNo.errors.required">
+          phoneNo is required.
+        </div>
+      </div>
+    </div>
+
+    <div formArrayName="products">
+      <button class="btn btn-primary" [disabled]="!newEventForm.get('customerName').value " (click)="addProduct(0)">Add
+        Product
+      </button>
+      <div *ngFor="let product of products.controls; let i=index">
+
+        <div [formGroupName]="i">
+
+          <div class="col-md-6">
+            <label class=" col-form-label" attr.for="{{'serialNo' + i}}">
+              Serial No:</label>
+
+            <select formControlName="serialNo" id="{{'serialNo' + i}}" required placeholder="serialNo"
+                    class="form-control">
+              <option value="" disabled>Choose Serial No</option>
+
+              <option *ngFor="let type of serials ">{{type}}</option>
+            </select>
+
+            <div
+              *ngIf="products.controls[i].get('serialNo').invalid && (products.controls[i].get('serialNo').dirty || products.controls[i].get('serialNo').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('serialNo').errors?.required">
+                serialNo required.
+              </label>
+            </div>
+          </div>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'modelNo' + i}}">
+            Model No:</label>
+          <div class="col-md-6">
+            <input id="{{'modelNo' + i}}" formControlName="modelNo" placeholder="modelNo" [readonly]="true"
+                   class="form-control" type="text">
+            <div
+              *ngIf="products.controls[i].get('modelNo').invalid && (products.controls[i].get('modelNo').dirty || products.controls[i].get('modelNo').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('modelNo').errors?.required">
+                modelNo required.
+              </label>
+            </div>
+          </div>
+          <br/>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'companyName' + i}}">
+            Company Name:</label>
+          <div class="col-md-6">
+            <input id="{{'companyName' + i}}" formControlName="companyName" placeholder="companyName" [readonly]="true"
+                   class="form-control" type="text">
+            <div
+              *ngIf="products.controls[i].get('companyName').invalid && (products.controls[i].get('companyName').dirty || products.controls[i].get('companyName').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('companyName').errors?.required">
+                companyName required.
+              </label>
+            </div>
+          </div>
+          <br/>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'productType' + i}}">
+            Product Type:</label>
+          <div class="col-md-6">
+            <input id="{{'productType' + i}}" formControlName="productType" placeholder="productType" [readonly]="true"
+                   class="form-control" type="text">
+            <div
+              *ngIf="products.controls[i].get('productType').invalid && (products.controls[i].get('productType').dirty || products.controls[i].get('productType').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('productType').errors?.required">
+                productType required.
+              </label>
+            </div>
+          </div>
+          <br/>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'qty' + i}}">
+            Qty:</label>
+          <div class="col-md-6">
+            <input id="{{'qty' + i}}" formControlName="qty" placeholder="qty" class="form-control" type="number">
+            <div
+              *ngIf="products.controls[i].get('qty').invalid && (products.controls[i].get('qty').dirty || products.controls[i].get('qty').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('qty').errors?.required">
+                qty required.
+              </label>
+            </div>
+            <div *ngIf="products.controls[i].get('qty').errors?.min"  class="alert alert-danger">
+            Minimum required number is 1.
+          </div>
+            <div *ngIf="products.controls[i].get('qty').errors?.max"  class="alert alert-danger">
+              Maximum required number is 10.
+            </div>
+            <!--            <div-->
+<!--              *ngIf="(products.controls[i].get('serialNo').invalid && customerName.invalid ) && (products.controls[i].get('qty').dirty || products.controls[i].get('qty').touched)"-->
+<!--              class="alert alert-danger">-->
+<!--              <label *ngIf="products.controls[i].get('qty').errors?.required">-->
+<!--                customer name and serial no required.-->
+<!--              </label>-->
+<!--            </div>-->
+          </div>
+          <br/>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'productRate' + i}}">
+            Product Rate:</label>
+          <div class="col-md-6">
+            <input id="{{'productRate' + i}}" formControlName="productRate" placeholder="productRate" [readonly]="true"
+                   class="form-control" type="number">
+            <div
+              *ngIf="products.controls[i].get('productRate').invalid && (products.controls[i].get('productRate').dirty || products.controls[i].get('productRate').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('productRate').errors?.required">
+                productRate required.
+              </label>
+            </div>
+          </div>
+          <br/>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'gstRate' + i}}">
+            gstRate:</label>
+          <div class="col-md-6">
+            <input id="{{'gstRate' + i}}" formControlName="gstRate" placeholder="gstRate" [readonly]="true"
+                   class="form-control" type="number">
+            <div
+              *ngIf="products.controls[i].get('gstRate').invalid && (products.controls[i].get('gstRate').dirty || products.controls[i].get('gstRate').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('gstRate').errors?.required">
+                GST Rate required.
+              </label>
+            </div>
+          </div>
+          <br/>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'sgstRate' + i}}">
+            sgstRate:</label>
+          <div class="col-md-6">
+            <input id="{{'sgstRate' + i}}" formControlName="sgstRate" placeholder="sgstRate" [readonly]="true"
+                   class="form-control" type="number">
+            <div
+              *ngIf="products.controls[i].get('sgstRate').invalid && (products.controls[i].get('sgstRate').dirty || products.controls[i].get('sgstRate').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('sgstRate').errors?.required">
+                SGST Rate required.
+              </label>
+            </div>
+          </div>
+          <br/>
+
+          <label class="col-md-6 col-form-label" attr.for="{{'totalRate' + i}}">
+            Total Rate:</label>
+          <div class="col-md-6">
+            <input id="{{'totalRate' + i}}" formControlName="totalRate" placeholder="totalRate" class="form-control"
+                   [readonly]="true" type="number">
+            <div
+              *ngIf="products.controls[i].get('totalRate').invalid && (products.controls[i].get('totalRate').dirty || products.controls[i].get('totalRate').touched)"
+              class="alert alert-danger">
+              <label *ngIf="products.controls[i].get('totalRate').errors?.required">
+                totalRate required.
+              </label>
+            </div>
+          </div>
+          <br/>
+
+          <div class="form-group row mb-2">
+            <div class="col-md-8">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input"
+                         id="{{'sendStock' + i}}"
+                         type="checkbox"
+                         (click)="reduceStock(i)"
+                         formControlName="sendStock">Reduce  From Stock
+                </label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="btn-group btn-group-sm">
+          <!--          <div class="col-md-4 offset-md-0">-->
+          <!--            <button class="btn btn-primary"-->
+          <!--                    style="font-size:smaller;margin-bottom:12px;margin-right:2px"-->
+          <!--                    title="Click to remove this tag"-->
+          <!--                    [disabled]="!newEventForm.get('products').at(i).valid "-->
+          <!--                     [disabled]="isButtonDisabled"-->
+          <!--                    (click)="reduceStock(i)">-->
+          <!--              Reduce Stock-->
+          <!--            </button>-->
+          <!--          </div>-->
+          <div class="col-md-4 offset-md-2">
+            <button class="btn btn-primary"
+                    style="font-size:smaller;margin-bottom:12px;margin-right:2px"
+                    title="Click to remove this tag"
+                    (click)="deleteProduct(i)">
+              Remove Product
+            </button>
+          </div>
+          <div class="col-md-4 offset-md-2">
+
+            <button class="btn btn-primary"
+                    style="font-size:smaller;margin-bottom:12px;margin-right:2px"
+                    title="Click to add this tag" [disabled]="!newEventForm.get('products').at(i).valid || products.controls[i].get('sendStock').value === false  "
+                    (click)="addProduct(i)">Add Product
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-group row mb-2">
+      <label class="col-md-2 col-form-label pt-0">Sales Bill Type</label>
+      <div class="col-md-8">
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input"
+                   id="billTypeId"
+                   type="radio"
+                   value="credit"
+                   formControlName="billType"
+                   (click)="setBillType('credit')"> Credit
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input"
+                   id="billTypeId"
+                   type="radio"
+                   value="finance"
+                   formControlName="billType"
+                   (click)="setBillType('finance')"> Finance
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input"
+                   id="billTypeId"
+                   type="radio"
+                   value="cash"
+                   formControlName="billType"
+                   (click)="setBillType('cash')"> Cash
+          </label>
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf="newEventForm.get('billType').value === 'credit'">
+
+      <div formGroupName="credit">
+        <h5>Credit Bill Type</h5>
+
+        <div class="form-group" [ngClass]="{'error': creditNo.invalid && creditNo.dirty }">
+          <label for="creditNo">creditNo:</label>
+          <input formControlName="creditNo" id="creditNo" type="number" class="form-control" placeholder="creditNo..."/>
+          <div *ngIf="creditNo.invalid && (creditNo.dirty || creditNo.touched)"
+               class="alert alert-danger">
+            <div *ngIf="creditNo.errors.required">
+              creditNo is required.
+            </div>
+            <div *ngIf="creditNo.errors.pattern">
+              creditNo must be start number.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'error': initialAmountPaid.invalid && initialAmountPaid.dirty }">
+          <label for="initialAmountPaid">Initial Amount Paid:</label>
+          <input formControlName="initialAmountPaid" id="initialAmountPaid" type="number" class="form-control"
+                 placeholder="initialAmountPaid..."/>
+          <div *ngIf="initialAmountPaid.invalid && (initialAmountPaid.dirty || initialAmountPaid.touched)"
+               class="alert alert-danger">
+            <div *ngIf="initialAmountPaid.errors.required">
+              initialAmountPaid is required.
+            </div>
+            <div *ngIf="initialAmountPaid.errors.pattern">
+              initialAmountPaid must be start number.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'error': loanAmount.invalid && loanAmount.dirty }">
+          <label for="loanAmount">Loan Amount:</label>
+          <input formControlName="loanAmount" id="loanAmount" type="number" class="form-control"
+                 placeholder="loanAmount..."/>
+          <div *ngIf="loanAmount.invalid && (loanAmount.dirty || loanAmount.touched)"
+               class="alert alert-danger">
+            <div *ngIf="loanAmount.errors.required">
+              loanAmount is required.
+            </div>
+            <div *ngIf="loanAmount.errors.pattern">
+              loanAmount must be start number.
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label pt-0">Loan Tenure</label>
+          <div class="col-md-8">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input class="form-check-input"
+                       id="loanTenure"
+                       type="radio"
+                       value="months"
+                       formControlName="loanTenure"
+                       (click)="setLoanTenure('months')"> Months
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input class="form-check-input"
+                       id="loanTenure"
+                       type="radio"
+                       value="years"
+                       formControlName="loanTenure"
+                       (click)="setLoanTenure('years')"> Years
+              </label>
+            </div>
+
+          </div>
+        </div>
+        <div *ngIf="newEventForm.controls.credit.get('loanTenure').value === 'months'">
+
+          <div class="form-group" [ngClass]="{'error': loanTenureMonths.invalid && loanTenureMonths.dirty }">
+            <label for="loanTenureMonths">loanTenureMonths:</label>
+            <input formControlName="loanTenureMonths" id="loanTenureMonths" type="text" class="form-control"
+                   placeholder="loanTenureMonths..."/>
+            <div *ngIf="loanTenureMonths.invalid && (loanTenureMonths.dirty || loanTenureMonths.touched)"
+                 class="alert alert-danger">
+              <div *ngIf="loanTenureMonths.errors.required">
+                loanTenureMonths is required.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="newEventForm.controls.credit.get('loanTenure').value === 'years'">
+
+          <div class="form-group" [ngClass]="{'error': loanTenureYears.invalid && loanTenureYears.dirty }">
+            <label for="loanTenureYears">loanTenureYears:</label>
+            <input formControlName="loanTenureYears" id="loanTenureYears" type="text" class="form-control"
+                   placeholder="loanTenureYears..."/>
+            <div *ngIf="loanTenureYears.invalid && (loanTenureYears.dirty || loanTenureYears.touched)"
+                 class="alert alert-danger">
+              <div *ngIf="loanTenureYears.errors.required">
+                loanTenureYears is required.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'error': loanInterest.invalid && loanInterest.dirty }">
+          <label for="loanInterest">Loan Interest:</label>
+          <select class="form-control"
+                  id="loanInterest"
+                  formControlName="loanInterest">
+            <option value=""
+                    disabled
+                    selected
+                    hidden>Select a Option...
+            </option>
+            <option value="1">1</option>
+            <option value="1.5">1.5</option>
+            <option value="2.0">2.0</option>
+            <option value="2.5">2.5</option>
+
+          </select>
+        </div>
+
+        <div class="form-group" [ngClass]="{'error': EMIPerMonth.invalid && EMIPerMonth.dirty }">
+          <label for="EMIPerMonth">loan EMI per month:</label>
+          <input formControlName="EMIPerMonth" id="EMIPerMonth" type="number" class="form-control" [readonly]="true"
+                 placeholder="EMIPerMonth..."/>
+          <div *ngIf="EMIPerMonth.invalid && (EMIPerMonth.dirty || EMIPerMonth.touched)"
+               class="alert alert-danger">
+            <div *ngIf="EMIPerMonth.errors.required">
+              loanEMI is required.
+            </div>
+            <div *ngIf="EMIPerMonth.errors.pattern">
+              EMIPerMonth must be start number.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'error': totalInterestPayable.invalid && totalInterestPayable.dirty }">
+          <label for="totalInterestPayable">Total Interest Payable (only interest towards loan):</label>
+          <input formControlName="totalInterestPayable" id="totalInterestPayable" type="number" class="form-control"
+                 [readonly]="true" placeholder="totalInterestPayable..."/>
+          <div *ngIf="totalInterestPayable.invalid && (totalInterestPayable.dirty || totalInterestPayable.touched)"
+               class="alert alert-danger">
+            <div *ngIf="totalInterestPayable.errors.required">
+              totalInterestPayable is required.
+            </div>
+            <div *ngIf="totalInterestPayable.errors.pattern">
+              totalInterestPayable must be start number.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'error': totalAmountPayable.invalid && totalAmountPayable.dirty }">
+          <label for="totalAmountPayable">Total Payment with interest:</label>
+          <input formControlName="totalAmountPayable" id="totalAmountPayable" type="number" class="form-control"
+                 [readonly]="true" placeholder="totalAmountPayable..."/>
+          <div *ngIf="totalAmountPayable.invalid && (totalAmountPayable.dirty || totalAmountPayable.touched)"
+               class="alert alert-danger">
+            <div *ngIf="totalAmountPayable.errors.required">
+              totalAmountPayable is required.
+            </div>
+            <div *ngIf="totalAmountPayable.errors.pattern">
+              totalAmountPayable must be start number.
+            </div>
+          </div>
+        </div>
+
+        <label> Due Payable Date:</label><br/>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" formControlName="duePayableDate" placeholder="duePayableDate..">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+
+        <div class="form-group" [ngClass]="{'error': totalPayableDues.invalid && totalPayableDues.dirty }">
+          <label for="totalPayableDues">Total Due Pay(in months):</label>
+          <input formControlName="totalPayableDues" id="totalPayableDues" type="number" class="form-control"
+                 [readonly]="true" placeholder="totalPayableDues..."/>
+          <div *ngIf="totalPayableDues.invalid && (totalPayableDues.dirty || totalPayableDues.touched)"
+               class="alert alert-danger">
+            <div *ngIf="totalPayableDues.errors.required">
+              totalPayableDues is required.
+            </div>
+            <div *ngIf="totalPayableDues.errors.pattern">
+              totalPayableDues must be start number.
+            </div>
+          </div>
+        </div>
+
+        <!--            <label >Due End Year:</label><br />-->
+        <!--                  <mat-form-field>-->
+        <!--                    <input matInput [matDatepicker]="picker1" formControlName="dueEndYear"  placeholder="due end date">-->
+        <!--                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>-->
+        <!--                    <mat-datepicker #picker1></mat-datepicker>-->
+        <!--                  </mat-form-field>-->
+
+
+        <div class="form-group" [ngClass]="{'error': dueEndYear.invalid && dueEndYear.dirty }">
+          <label for="dueEndYear">Due End Year:</label>
+          <input formControlName="dueEndYear" id="dueEndYear" type="Date" class="form-control" [readonly]="true"
+                 placeholder="dueEndYear..."/>
+          <div *ngIf="dueEndYear.invalid && (dueEndYear.dirty || dueEndYear.touched)"
+               class="alert alert-danger">
+            <div *ngIf="dueEndYear.errors.required">
+              dueEndYear is required.
+            </div>
+          </div>
+        </div>
+
+        <!--        <div class="form-group" [ngClass]="{'error': currentDue.invalid && currentDue.dirty }">-->
+        <!--          <label for="currentDue">Current Due:</label>-->
+        <!--          <input formControlName="currentDue" id="currentDue" type="Date" class="form-control" [readonly]="true" placeholder="currentDue..." />-->
+        <!--          <div *ngIf="currentDue.invalid && (currentDue.dirty || currentDue.touched)"-->
+        <!--               class="alert alert-danger">-->
+        <!--            <div *ngIf="currentDue.errors.required">-->
+        <!--              Current Due is required.-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
+
+
+        <div class="form-group" [ngClass]="{'error': betweenDues.invalid && betweenDues.dirty }">
+          <label for="betweenDues">betweenDues:</label>
+          <textarea matInput placeholder="Ex. this is example..." id="betweenDues" rows="5"
+                    formControlName="betweenDues"></textarea>
+          <!--          <input formControlName="betweenDues" id="betweenDues" type="TextArea" class="form-control" placeholder="betweenDues..." />-->
+          <div *ngIf="betweenDues.invalid && (betweenDues.dirty || betweenDues.touched)"
+               class="alert alert-danger">
+            <div *ngIf="betweenDues.errors.required">
+              betweenDues is required.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div *ngIf="newEventForm.get('billType').value === 'finance'">
+
+      <div class="form-group" [ngClass]="{'error': financeName.invalid && financeName.dirty }">
+        <label for="financeName">financeName:</label>
+        <input formControlName="financeName" id="financeName" type="text" class="form-control"
+               placeholder="financeName..."/>
+        <div *ngIf="financeName.invalid && (financeName.dirty || financeName.touched)"
+             class="alert alert-danger">
+          <div *ngIf="financeName.errors.required">
+            financeName is required.
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="form-group row mb-2">
+      <div class="col-md-8">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input"
+                   id="delivered"
+                   type="checkbox"
+                   formControlName="delivered">Product Dispatched Status
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="btn-group btn-group-sm">
+
+    <div class="col-md-4 offset-md-1">
+
+    <button type="button" [disabled]=" this.newEventForm.get('delivered').pristine" (click)="save()"
+            class="btn btn-primary">Save
+    </button>
+    </div>
+    <div class="col-md-4 offset-md-1">
+<!--      <a class="btn btn-primary"   style="width:80px" [routerLink]="['/sales']">Back </a>-->
+
+      <button type="button" (click)='clear()' class="btn btn-secondary"> Clear Form</button>
+    </div>
+    </div>
+  </form>
+</div>
+<br>Value: {{ newEventForm.value | json }}
+  </mat-card>
+</div>
+
+<!--[disabled]="!newEventForm.get('products').at(0).valid"-->

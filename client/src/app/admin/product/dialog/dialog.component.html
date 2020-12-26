@@ -1,0 +1,70 @@
+<h1 mat-dialog-title> Product :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+  <form novalidate [formGroup]="newUserForm">
+
+    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+
+      <input matInput placeholder="serial no" type="text" [(ngModel)]="localData.serialNo" formControlName="serialNo"
+             class="form-control" name="serialNo">
+      <mat-error *ngIf="hasError('serialNo', 'required')">serial no is required</mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; ">
+
+      <input matInput placeholder="modelNo" type="text" [(ngModel)]="localData.modelNo" formControlName="modelNo"
+             class="form-control" name="modelNo">
+      <mat-error *ngIf="hasError('modelNo', 'required')">modelNo is required</mat-error>
+
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; ">
+
+      <input matInput placeholder="HSNCodeNo" type="text" [(ngModel)]="localData.HSNCodeNo" formControlName="HSNCodeNo"
+             class="form-control" name="HSNCodeNo">
+      <mat-error *ngIf="hasError('HSNCodeNo', 'required')">HSNCodeNo is required</mat-error>
+
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; ">
+
+      <input matInput placeholder="companyName" type="text" [(ngModel)]="localData.companyName"
+             formControlName="companyName" class="form-control" name="companyName">
+      <mat-error *ngIf="hasError('companyName', 'required')">companyName is required</mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input matInput placeholder="productType" type="text" [(ngModel)]="localData.productType"
+             formControlName="productType" class="form-control" name="productType">
+      <mat-error *ngIf="hasError('productType', 'required')">productType is required</mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input matInput placeholder="qty" type="number" [(ngModel)]="localData.qty" formControlName="qty"
+             class="form-control" name="qty">
+      <mat-error *ngIf="hasError('qty', 'required')">qty is required</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input matInput placeholder="rate" type="number" [(ngModel)]="localData.rate" formControlName="rate"
+             class="form-control" name="rate">
+      <mat-error *ngIf="hasError('rate', 'required')">Rate is required</mat-error>
+
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input matInput placeholder="gstRate" type="number" [(ngModel)]="localData.gstRate" formControlName="gstRate"
+             class="form-control" name="gstRate">
+      <mat-error *ngIf="hasError('gstRate', 'required')">gst rate is required</mat-error>
+
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; ">
+      <input matInput placeholder="sgstRate" type="number" [(ngModel)]="localData.sgstRate" formControlName="sgstRate"
+             class="form-control" name="sgstRate">
+      <mat-error *ngIf="hasError('sgstRate', 'required')">sgst rate is required</mat-error>
+
+    </mat-form-field>
+    <ng-template #elseTemplate>
+      Sure to delete <b>{{localData.modelNo}}</b>?
+    </ng-template>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button [disabled]="action != 'Delete' && newUserForm.invalid  " (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

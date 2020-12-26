@@ -1,0 +1,68 @@
+[
+  {
+    "purchaseBillNo": 1,
+    "purchaseDate": "Wed Feb 13 2020 00:00:00 GMT+0000 (UTC)",
+    "creditorId": '',
+    "productCreditors": "AVP",
+    "itemDescription": [
+      {
+        "serialNo": 1,
+        "modelNo": "sony-1",
+        "HSNCodeNo": "h1",
+        "productId": '',
+        "companyName": "sony",
+        "productType": "tv",
+        "qty": 1,
+        "rate": 10000,
+        "gstRate": 1200,
+        "sgstRate": 1200,
+        "totalRate": 12400
+      },
+      {
+        "serialNo": 2,
+        "modelNo": "sam-1",
+        "HSNCodeNo": "h2",
+        "productId": '',
+        "companyName": "samsung",
+        "productType": "tv",
+        "qty": 2,
+        "rate": 20000,
+        "gstRate": 1200,
+        "sgstRate": 1200,
+        "totalRate": 22400
+      }
+    ]
+  }
+
+
+
+
+
+
+
+
+    {
+      "serialNo": 3,
+      "modelNo": "sam-2",
+      "HSNCodeNo": "h2",
+      "companyName": "samsung",
+      "productType": "washingMachine",
+      "qty": 2,
+      "rate": 30000,
+      "gstRate": 1200,
+      "sgstRate": 1200,
+      "totalRate": 32400
+    },
+    {
+      "serialNo": 12,
+      "modelNo": "prethi-1",
+      "HSNCodeNo": "h12",
+      "companyName": "preethi",
+      "productType": "mixie",
+      "qty": 2,
+      "rate": 3000,
+      "gstRate": 200,
+      "sgstRate": 200,
+      "totalRate": 3400
+    }
+}]

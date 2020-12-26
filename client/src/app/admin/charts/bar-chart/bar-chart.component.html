@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Bar Chart</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+      [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+  </mat-card-content>
+</mat-card>
+
+
+<!--// const filtered = start.filter((v, i) => serial.indexOf(v) !== i)-->
+<!--// const unique = new Set(filtered)-->
+<!--// console.log('repeated element' , Array.from(unique))-->
+<!--// const filtered1 = name.filter((v, i) => serial.indexOf(v) !== i)-->
+<!--// const unique1 = new Set(filtered1)-->
+<!--// console.log('seperate element' , Array.from(unique1))-->
+<!--// console.log('TAN BAR CHART MONTH ===>', this.month);-->
+<!--// console.log('TAN BAR CHART QTY===>', qty);-->
+<!--// const result = name.map((nam, i) => ({ label: nam }));-->
+<!--// console.log('TAN BAR CHART LABEL===>', result);-->

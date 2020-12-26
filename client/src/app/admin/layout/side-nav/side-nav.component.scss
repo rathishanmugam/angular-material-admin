@@ -1,0 +1,52 @@
+@import '../../../../scss/variables';
+.mat-nav-list {
+  width: 100%;
+  a {
+      .mat-icon {
+          margin-right: 10px;
+          color: $primary-color;
+      }
+      display: block;
+  }
+}
+.nested-menu {
+  .nested {
+      list-style-type: none;
+    background-color:orange;
+  }
+  .submenu {
+      display: none;
+      height: 0;
+    color: orange;
+  }
+  & .expand {
+      &.submenu {
+        &:hover,
+        &:focus {
+          display: block;
+          list-style-type: none;
+          height: auto;
+          background-color:orange;
+          margin: 0;
+          li {
+              a {
+                  padding: 5px;
+                color: lemonchiffon;
+                  display: block;
+              }
+          }
+      }
+    //&:hover,
+    //&:focus {
+    //    background-color:orange;
+    }
+  }
+}
+.mat-icon {
+  margin-right: 10px;
+  color: $primary-color;
+}
+.mat-list-item.active{
+  color: red;
+  //any styles you like to add
+}

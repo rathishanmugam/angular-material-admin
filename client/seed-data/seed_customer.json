@@ -1,0 +1,30 @@
+[
+  {
+    "name": "rathi",
+    "address": "west st,cross road,namakkal",
+    "email": "test@test.com",
+    "phone": "720-303-1234",
+    "createdOn": "Wed Feb 13 2020 00:00:00 GMT+0000 (UTC)"
+  },
+  {
+    "name": "jothi",
+    "address": "west st,cross road,namakkal",
+    "email": "test1@test.com",
+    "phone": "720-303-1234",
+    "createdOn": "Wed Mar 13 2020 00:00:00 GMT+0000 (UTC)"
+  },
+  {
+    "name": "seeni",
+    "address": "west st,cross road,namakkal",
+    "email": "test2@test.com",
+    "phone": "720-303-1234",
+    "createdOn": "Wed Jan 13 2020 00:00:00 GMT+0000 (UTC)"
+  },
+  {
+    "name": "nithiya",
+    "address": "west st,cross road,namakkal",
+    "email": "test3@test.com",
+    "phone": "720-303-1234",
+    "createdOn": "Wed Jan 13 2020 00:00:00 GMT+0000 (UTC)"
+  }
+]

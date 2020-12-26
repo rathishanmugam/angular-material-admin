@@ -1,0 +1,27 @@
+[
+  {
+    "customerName": "rathi",
+    "address": "cross st,namakkal",
+    "phoneNo": "123-234-2322",
+    "email": "test@test.com",
+    "loanAmount": 5000,
+    "duePerMonth": 1000,
+    "monthsToPay": 5,
+    "dueDate": "Wed Feb 13 2020 00:00:00 GMT+0000 (UTC)",
+    "dueDateExtended": "",
+    "graceDays":0,
+    "paid":false,
+    "paidDue": 2,
+    "balanceDue": 3
+  },{
+  "customerName": "jothi",
+  "address": "cross st,namakkal",
+  "phoneNo": "123-234-2322",
+  "email": "test@test.com",
+  "loanAmount": 10000,
+  "duePerMonth": 2000,
+  "monthsToPay": 5,
+  "dueDate":"Fri Feb 25 2020 00:00:00 GMT+0000 (UTC)",
+  "paidDue": 2,
+  "balanceDue": 3
+}]

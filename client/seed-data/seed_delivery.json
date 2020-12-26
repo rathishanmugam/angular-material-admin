@@ -1,0 +1,24 @@
+[
+  {
+    "deliveryNo": 1,
+    "salesDate": "Wed Feb 13 2020 00:00:00 GMT+0000 (UTC)",
+    "customerName": "jothi",
+    "address": "north st,namakkal",
+    "phoneNo": "720-232-1235",
+    "modelNo": "sony-1",
+    "qty": 1,
+    "companyName": "sony",
+    "productType": "tv",
+    "totalRate": 12400
+  },{
+  "deliveryNo": 2,
+  "salesDate": "Wed Apr 1 2020 00:00:00 GMT+0000 (UTC)",
+  "customerName": "seeni",
+  "address": "north st,namakkal",
+  "phoneNo": "720-232-1235",
+  "modelNo": "sam-1",
+  "qty": 1,
+  "companyName": "samsung",
+  "productType": "tv",
+  "totalRate": 12400
+}]

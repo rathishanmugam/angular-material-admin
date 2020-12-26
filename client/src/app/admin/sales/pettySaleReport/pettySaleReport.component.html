@@ -1,0 +1,87 @@
+<h1>Petty Sales Report</h1>
+<hr/>
+<div fxLayoutAlign="space-between stretch" fxLayout="row wrap" fxLayout.xs="column">
+  <mat-card>
+
+    <mat-form-field>
+
+      <input matInput placeholder="Search name" #input>
+    </mat-form-field>
+
+
+    <div class="spinner-container" *ngIf="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <!--  </form>-->
+    <div class="example-container mat-elevation-z8">
+
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" matSortActive="salesDate"
+             matSortDirection="asc"
+             matSortActive="billNo" matSortDirection="asc" matSortActive="billNo" matSortDirection="asc"
+             matSortDisableClear>
+
+        <!-- For User ID -->
+        <ng-container matColumnDef="billNo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Bill No</th>
+          <td mat-cell *matCellDef="let element"> {{element.billNo}}  </td>
+        </ng-container>
+        <!-- For User ID -->
+        <ng-container matColumnDef="salesDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Sales Date</th>
+          <td mat-cell *matCellDef="let element">  {{element.salesDate| date}} </td>
+        </ng-container>
+        <!-- For Title -->
+        <ng-container matColumnDef="totalNetAmount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Net Amount</th>
+          <td mat-cell *matCellDef="let element">  {{element.totalNetAmount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="details">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Sold Product</th>
+          <td mat-cell *matCellDef="let element">
+            <button class="btn btn-primary" (click)="productDetails(element)" color="accent">
+              Details
+            </button>
+          </td>
+        </ng-container>
+        <!-- For Title -->
+        <!--        <ng-container matColumnDef="serialNo">-->
+        <!--          <th mat-header-cell *matHeaderCellDef mat-sort-header> serialNo </th>-->
+        <!--          <td mat-cell *matCellDef="let element">  {{element.products.serialNo}} </td>-->
+        <!--        </ng-container>-->
+        <!--        &lt;!&ndash; For Title &ndash;&gt;-->
+        <!--        <ng-container matColumnDef="modelNo">-->
+        <!--          <th mat-header-cell *matHeaderCellDef mat-sort-header> model No</th>-->
+        <!--          <td mat-cell *matCellDef="let element">  {{element.products.modelNo}} </td>-->
+        <!--        </ng-container>-->
+        <!--        &lt;!&ndash; For Completion Status &ndash;&gt;-->
+        <!--        <ng-container matColumnDef="qty">-->
+        <!--          <th mat-header-cell *matHeaderCellDef mat-sort-header> qty </th>-->
+        <!--          <td mat-cell *matCellDef="let element"> {{element.products.qty}}  </td>-->
+        <!--        </ng-container>-->
+
+        <!--        &lt;!&ndash; For Completion Status &ndash;&gt;-->
+        <!--        <ng-container matColumnDef="productRate">-->
+        <!--          <th mat-header-cell *matHeaderCellDef mat-sort-header> product Rate </th>-->
+        <!--          <td mat-cell *matCellDef="let element"> {{element.products.productRate }}  </td>-->
+        <!--        </ng-container>-->
+        <!--        &lt;!&ndash; For Completion Status &ndash;&gt;-->
+        <!--        <ng-container matColumnDef="totalRate">-->
+        <!--          <th mat-header-cell *matHeaderCellDef mat-sort-header> total Rate </th>-->
+        <!--          <td mat-cell *matCellDef="let element"> {{element.products.totalRate}}  </td>-->
+        <!--        </ng-container>-->
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [length]="this.total" [pageSize]="7" [pageSizeOptions]="[2,3,4,5, 10, 25, 100]"></mat-paginator>
+    </div>
+  </mat-card>
+</div>
+
+
+
+
+
